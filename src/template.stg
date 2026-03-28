@@ -1,0 +1,27 @@
+script(statements) ::= <<
+#!/bin/bash
+
+<statements; separator="\n">
+>>
+
+
+copy(flag, source, dest) ::= "cp <flag><source> <dest>"
+
+delete(flag, target) ::= "rm <flag><target>"
+
+move(source, dest) ::= "mv <source> <dest>"
+
+create_dir(target) ::= "mkdir -p <target>"
+
+create_file(target) ::= "touch <target>"
+
+
+list(target) ::= "ls -l<if(target)> <target><endif>"
+
+print(text) ::= "echo <text>"
+
+loop(count, statements) ::= <<
+for i in {1..<count>}; do
+<statements:{stmt |   <stmt>}; separator="\n">
+done
+>>

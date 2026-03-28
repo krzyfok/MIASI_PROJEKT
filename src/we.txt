@@ -1,0 +1,2 @@
+utwórz katalog "/tmp/test"
+skopiuj plik "a.txt" do "/tmp/test"

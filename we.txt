@@ -1,2 +1,2 @@
-utwórz katalog "/tmp/test"
-skopiuj plik "a.txt" do "/tmp/test"
+utwórz katalog "moj_folder"
+skopiuj plik "a.txt" do "moj_folder"
