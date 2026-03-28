@@ -23,7 +23,9 @@ arg : PATH
     | STRING
     ;
 
-PATH : [a-zA-Z0-9_./\-]+ ;
-STRING : '"' .*? '"' ;
 NUMBER : [0-9]+ ;
+STRING : '"' .*? '"' ;
+PATH : [a-zA-Z0-9_./\-]+ ;
+
+
 WS : [ \t\r\n]+ -> skip ;
