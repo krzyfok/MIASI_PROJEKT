@@ -13,10 +13,8 @@ przenieś plik "moj_katalog/kopia.txt" do "backup_katalogu/przeniesiony.txt"
 pokaż pliki
 pokaż pliki w "backup_katalogu"
 
-powtórz 3 razy {
-  wypisz "Generuje plik z petli..."
-  utwórz plik "plik_z_petli.log"
-}
+powtórz 3 razy: wypisz "Generuje plik z petli..." , utwórz plik "plik_z_petli.log"
+
 
 usuń plik "moj_katalog/dokument.txt"
 usuń katalog "moj_katalog"

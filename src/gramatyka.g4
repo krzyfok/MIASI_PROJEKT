@@ -17,7 +17,7 @@ moveCmd   : 'przenieś' typ=('plik' | 'katalog')? zrodlo=arg 'do' cel=arg ;
 createCmd : 'utwórz' typ=('plik' | 'katalog') cel=arg ;
 listCmd   : 'pokaż' 'pliki' ('w' cel=arg)? ;
 printCmd  : 'wypisz' tresc=arg ;
-loopCmd   : 'powtórz' ile=NUMBER 'razy' '{' stat* '}' ;
+loopCmd   : 'powtórz' ile=NUMBER 'razy' ':' stat (',' stat)* ;
 
 arg : PATH
     | STRING
