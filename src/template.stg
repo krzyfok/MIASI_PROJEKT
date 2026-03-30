@@ -25,3 +25,31 @@ for i in {1..<count>}; do
 <statements:{stmt |   <stmt>}; separator="\n">
 done
 >>
+
+open_dir(target) ::= "cd <target>"
+open_file(target) ::= "cat <target>"
+leave_dir() ::= "cd .."
+
+location_me() ::= "pwd"
+location_file(target) ::= "locate <target>"
+
+numerate(pattern) ::= <<
+i=1
+for f in <pattern>; do
+    [ -e "${f}" ] || continue
+
+    ext="${f##*.}"
+    base="${f%.*}"
+
+    printf -v num "%03d" "$i"
+
+    if [[ "$f" == "$ext" ]]; then
+        new="${f}_$num"
+    else
+        new="${base}_$num.$ext"
+    fi
+
+    mv -- "$f" "$new"
+    ((i++))
+done
+>>

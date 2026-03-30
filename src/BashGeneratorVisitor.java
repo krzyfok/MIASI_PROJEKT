@@ -1,4 +1,3 @@
-import org.antlr.v4.runtime.tree.TerminalNode;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 
@@ -90,6 +89,44 @@ public class BashGeneratorVisitor extends gramatykaBaseVisitor<ST> {
         for (gramatykaParser.StatContext statCtx : ctx.stat()) {
             st.add("statements", visit(statCtx));
         }
+        return st;
+    }
+
+    @Override
+    public ST visitCdirCmd(gramatykaParser.CdirCmdContext ctx) {
+        ST st = switch (ctx.typ.getText()) {
+            case "katalog" -> stGroup.getInstanceOf("open_dir");
+            case "plik" -> stGroup.getInstanceOf("open_file");
+            default -> throw new RuntimeException("Otwarcie wymaga sprecyzowania typu (plik | katalog)!");
+
+        };
+        st.add("target", ctx.cel.getText());
+        return st;
+    }
+    @Override
+    public ST visitLdirCmd(gramatykaParser.LdirCmdContext ctx) {
+        return stGroup.getInstanceOf("leave_dir");
+    }
+
+    @Override
+    public ST visitPwd(gramatykaParser.PwdContext ctx) {
+        return stGroup.getInstanceOf("location_me");
+    }
+
+    @Override
+    public ST visitLocate_file(gramatykaParser.Locate_fileContext ctx) {
+        ST st = stGroup.getInstanceOf("location_file");
+        st.add("target", ctx.cel.getText());
+
+        return st;
+    }
+
+    @Override
+    public ST visitNumerateCmd(gramatykaParser.NumerateCmdContext ctx) {
+        ST st = stGroup.getInstanceOf("numerate");
+        String raw = ctx.cel.getText();
+        String pattern = raw.substring(1,raw.length()-1);
+        st.add("pattern", pattern);
         return st;
     }
 }

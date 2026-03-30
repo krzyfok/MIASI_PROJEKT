@@ -4,6 +4,10 @@ utwórz katalog "moj_katalog"
 utwórz plik "moj_katalog/dokument.txt"
 wypisz "Katalog i plik utworzone."
 
+otwórz plik "moj_katalog/dokument.txt"
+otwórz katalog "moj_katalog"
+opóść katalog
+
 skopiuj plik "moj_katalog/dokument.txt" do "moj_katalog/kopia.txt"
 skopiuj katalog "moj_katalog" do "backup_katalogu"
 
@@ -19,3 +23,4 @@ powtórz 3 razy: wypisz "Generuje plik z petli..." , utwórz plik "plik_z_petli.
 usuń plik "moj_katalog/dokument.txt"
 usuń katalog "moj_katalog"
 
+ponumeruj "moj_katalog/*"
