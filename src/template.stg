@@ -53,3 +53,12 @@ for f in <pattern>; do
     ((i++))
 done
 >>
+
+
+def_macro(name, statements) ::= <<
+<name>() {
+<statements:{stmt |     <stmt>}; separator="\n">
+}
+>>
+
+call_macro(name) ::= "<name>"

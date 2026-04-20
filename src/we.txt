@@ -1,2 +1,6 @@
-utwórz katalog "/tmp/test"
-skopiuj plik "a.txt" do "/tmp/test"
+zdefiniuj makro sprzatanie: 
+    wypisz "Zaczynam sprzatanie", 
+    usuń katalog "stare_dane",
+    utwórz katalog "nowe_dane"
+
+uruchom makro sprzatanie

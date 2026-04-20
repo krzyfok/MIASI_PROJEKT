@@ -129,4 +129,23 @@ public class BashGeneratorVisitor extends gramatykaBaseVisitor<ST> {
         st.add("pattern", pattern);
         return st;
     }
+
+    @Override
+    public ST visitDefMacroCmd(gramatykaParser.DefMacroCmdContext ctx) {
+        ST st = stGroup.getInstanceOf("def_macro");
+
+        st.add("name", ctx.name.getText());
+        for (gramatykaParser.StatContext statCtx : ctx.stat()) {
+            st.add("statements", visit(statCtx));
+        }
+        return st;
+    }
+
+    @Override
+    public ST visitCallMacroCmd(gramatykaParser.CallMacroCmdContext ctx) {
+        ST st = stGroup.getInstanceOf("call_macro");
+
+        st.add("name", ctx.name.getText());
+        return st;
+    }
 }

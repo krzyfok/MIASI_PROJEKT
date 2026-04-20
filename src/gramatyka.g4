@@ -13,6 +13,8 @@ stat: copyCmd
     | ldirCmd
     | locationCmd
     | numerateCmd
+    | defMacroCmd
+    | callMacroCmd
     ;
 
 
@@ -27,6 +29,8 @@ cdirCmd   : 'otwórz' typ=('plik' | 'katalog') cel=arg ;
 ldirCmd   : 'opóść' 'katalog' cel=arg;
 locationCmd : 'gdzie' locationArgs;
 numerateCmd : 'ponumeruj' cel=arg;
+defMacroCmd  : 'zdefiniuj' 'makro' name=ID ':' stat (',' stat)* ;
+callMacroCmd : 'uruchom' 'makro' name=ID ;
 
 locationArgs
     : 'jestem' #pwd
@@ -36,10 +40,12 @@ locationArgs
 
 arg : PATH
     | STRING
+    | ID
     ;
 
 NUMBER : [0-9]+ ;
 STRING : '"' .*? '"' ;
+ID   : [a-zA-Z_][a-zA-Z0-9_]* ;
 PATH : [a-zA-Z0-9_./\-]+ ;
 
 
