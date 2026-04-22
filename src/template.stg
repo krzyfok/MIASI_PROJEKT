@@ -62,3 +62,30 @@ def_macro(name, statements) ::= <<
 >>
 
 call_macro(name) ::= "<name>"
+
+
+system_health() ::= <<
+echo "=== STAN SYSTEMU ==="
+echo "--- DYSK ---"
+df -h | grep -E '^/dev/|Filesystem'
+echo "--- PAMIĘĆ RAM ---"
+free -h
+echo "--- CZAS PRACY (UPTIME) ---"
+uptime -p
+echo "===================="
+>>
+
+backup(target) ::= <<
+mkdir -p .backups
+BACKUP_NAME=".backups/backup_$(date +%Y%m%d_%H%M%S).tar.gz"
+tar -czf "$BACKUP_NAME" <target>
+echo "Utworzono kopię zapasową: $BACKUP_NAME"
+>>
+
+cleanup() ::= <<
+echo "Rozpoczynam sprzątanie w $(pwd)..."
+find . -type f -name "*.log" -exec rm -v {} \;
+find . -type f -name "*.tmp" -exec rm -v {} \;
+find . -type d -name "__pycache__" -exec rm -rfv {} +
+echo "Sprzątanie zakończone."
+>>

@@ -15,6 +15,9 @@ stat: copyCmd
     | numerateCmd
     | defMacroCmd
     | callMacroCmd
+    | healthCmd
+    | backupCmd
+    | cleanupCmd
     ;
 
 
@@ -31,6 +34,9 @@ locationCmd : 'gdzie' locationArgs;
 numerateCmd : 'ponumeruj' cel=arg;
 defMacroCmd  : 'zdefiniuj' 'makro' name=ID ':' stat (',' stat)* ;
 callMacroCmd : 'uruchom' 'makro' name=ID ;
+healthCmd  : 'pokaż' 'stan' 'systemu' ;
+backupCmd  : 'zabezpiecz' cel=arg ;
+cleanupCmd : 'posprzątaj' 'tutaj' ;
 
 locationArgs
     : 'jestem' #pwd
