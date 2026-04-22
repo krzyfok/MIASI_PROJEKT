@@ -15,7 +15,7 @@ public class Main {
 
         try {
 
-            inp = CharStreams.fromFileName("we.txt");
+            inp = CharStreams.fromFileName("src/we.txt");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

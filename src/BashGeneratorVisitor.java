@@ -150,6 +150,47 @@ public class BashGeneratorVisitor extends gramatykaBaseVisitor<ST> {
     }
 
     @Override
+    public ST visitIfExistsCmd(gramatykaParser.IfExistsCmdContext ctx) {
+        ST st = stGroup.getInstanceOf("if_exists");
+        String test = "-e";
+
+        if (ctx.typ != null) {
+            test = ctx.typ.getText().equals("katalog") ? "-d" : "-f";
+        }
+
+        st.add("test", test);
+        st.add("target", ctx.cel.getText());
+
+        for (gramatykaParser.StatContext statCtx : ctx.thenBlock) {
+            st.add("thenStatements", visit(statCtx));
+        }
+
+        if (ctx.elseBlock != null) {
+            for (gramatykaParser.StatContext statCtx : ctx.elseBlock) {
+                st.add("elseStatements", visit(statCtx));
+            }
+        }
+
+        return st;
+    }
+
+    @Override
+    public ST visitArchiveCmd(gramatykaParser.ArchiveCmdContext ctx) {
+        ST st = stGroup.getInstanceOf("archive");
+        st.add("target", ctx.cel.getText());
+        st.add("archive", ctx.archiwum.getText());
+        return st;
+    }
+
+    @Override
+    public ST visitExtractCmd(gramatykaParser.ExtractCmdContext ctx) {
+        ST st = stGroup.getInstanceOf("extract");
+        st.add("archive", ctx.archiwum.getText());
+        st.add("target", ctx.cel.getText());
+        return st;
+    }
+
+    @Override
     public ST visitHealthCmd(gramatykaParser.HealthCmdContext ctx) {
         return stGroup.getInstanceOf("system_health");
     }

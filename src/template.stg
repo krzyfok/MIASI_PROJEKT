@@ -63,6 +63,23 @@ def_macro(name, statements) ::= <<
 
 call_macro(name) ::= "<name>"
 
+if_exists(test, target, thenStatements, elseStatements) ::= <<
+if [ <test> <target> ]; then
+<thenStatements:{stmt |   <stmt>}; separator="\n">
+<if(elseStatements)>
+else
+<elseStatements:{stmt |   <stmt>}; separator="\n">
+<endif>
+fi
+>>
+
+archive(target, archive) ::= "tar -czf <archive> <target>"
+
+extract(archive, target) ::= <<
+mkdir -p <target>
+tar -xzf <archive> -C <target>
+>>
+
 
 system_health() ::= <<
 echo "=== STAN SYSTEMU ==="

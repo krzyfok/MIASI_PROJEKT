@@ -1,6 +1,15 @@
-zdefiniuj makro sprzatanie: 
-    wypisz "Zaczynam sprzatanie", 
-    usuń katalog "stare_dane",
-    utwórz katalog "nowe_dane"
+utwórz katalog "testowe_dane"
+utwórz plik "testowe_dane/dokument.txt"
+wypisz "Start testu funkcji generatora."
+
+jeśli istnieje katalog "testowe_dane" to wypisz "Katalog testowe_dane istnieje", utwórz plik "testowe_dane/drugi_plik.txt" w przeciwnym razie wypisz "Katalog testowe_dane nie istnieje"
+
+spakuj "testowe_dane" do "testowe_dane.tar.gz"
+rozpakuj "testowe_dane.tar.gz" do "rozpakowane_testowe_dane"
+
+zdefiniuj makro sprzatanie:
+    wypisz "Zaczynam sprzatanie",
+    usuń katalog "rozpakowane_testowe_dane",
+    usuń plik "testowe_dane.tar.gz"
 
 uruchom makro sprzatanie
