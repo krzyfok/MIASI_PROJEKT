@@ -6,6 +6,7 @@ jeśli istnieje katalog "testowe_dane" to wypisz "Katalog testowe_dane istnieje"
 
 spakuj "testowe_dane" do "testowe_dane.tar.gz"
 rozpakuj "testowe_dane.tar.gz" do "rozpakowane_testowe_dane"
+wyczyść pliki "testowe_dane/*.txt"
 
 zdefiniuj makro sprzatanie:
     wypisz "Zaczynam sprzatanie",

@@ -18,6 +18,7 @@ stat: copyCmd
     | ifExistsCmd
     | archiveCmd
     | extractCmd
+    | cleanMatchingCmd
     | healthCmd
     | backupCmd
     | cleanupCmd
@@ -40,6 +41,7 @@ callMacroCmd : 'uruchom' 'makro' name=ID ;
 ifExistsCmd : 'jeśli' 'istnieje' typ=('plik' | 'katalog')? cel=arg 'to' thenBlock+=stat (',' thenBlock+=stat)* ('w przeciwnym razie' elseBlock+=stat (',' elseBlock+=stat)*)? ;
 archiveCmd : 'spakuj' cel=arg 'do' archiwum=arg ;
 extractCmd : 'rozpakuj' archiwum=arg 'do' cel=arg ;
+cleanMatchingCmd : 'wyczyść' 'pliki' cel=arg ;
 healthCmd  : 'pokaż' 'stan' 'systemu' ;
 backupCmd  : 'zabezpiecz' cel=arg ;
 cleanupCmd : 'posprzątaj' 'tutaj' ;

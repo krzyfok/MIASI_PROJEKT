@@ -191,6 +191,15 @@ public class BashGeneratorVisitor extends gramatykaBaseVisitor<ST> {
     }
 
     @Override
+    public ST visitCleanMatchingCmd(gramatykaParser.CleanMatchingCmdContext ctx) {
+        ST st = stGroup.getInstanceOf("clean_matching");
+        String raw = ctx.cel.getText();
+        String pattern = raw.substring(1, raw.length() - 1);
+        st.add("pattern", pattern);
+        return st;
+    }
+
+    @Override
     public ST visitHealthCmd(gramatykaParser.HealthCmdContext ctx) {
         return stGroup.getInstanceOf("system_health");
     }

@@ -80,6 +80,13 @@ mkdir -p <target>
 tar -xzf <archive> -C <target>
 >>
 
+clean_matching(pattern) ::= <<
+for f in <pattern>; do
+    [ -e "${f}" ] || continue
+    rm -f -- "${f}"
+done
+>>
+
 
 system_health() ::= <<
 echo "=== STAN SYSTEMU ==="
